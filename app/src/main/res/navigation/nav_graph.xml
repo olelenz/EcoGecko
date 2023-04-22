@@ -19,7 +19,7 @@
         android:id="@+id/SecondFragment"
         android:name="eco.gecko.ecogecko.FragmentUI"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_ui">
+        tools:layout="@layout/game_ui">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

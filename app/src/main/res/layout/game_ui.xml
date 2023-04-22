@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".FragmentUI">
+    tools:context=".GameUI">
 
     <TextView
         android:id="@+id/dummy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello from Fragment - DUMMY"
+        android:text="@string/greeting"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,17 +22,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        app:layout_constraintTop_toBottomOf="@+id/dummy"/>
+        android:background="@color/purple_200"
+        app:layout_constraintTop_toBottomOf="@+id/dummy" />
 
-    <TextView
-        android:id="@+id/text1"
+    <Button
+        android:id="@+id/newGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="parent"
+        android:text="@string/new_game_button"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/gridView"/>
 
 
 
