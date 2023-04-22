@@ -45,21 +45,24 @@ class GameUI : Fragment() {
 
 class GridAdapter() : BaseAdapter() {
 
+    lateinit var currentTile: Tile
+
     val colourDictionary = mapOf<Int, Int>(
-        0 to Color.WHITE,
-        1 to Color.RED,
+        0 to Color.DKGRAY,
+        1 to Color.YELLOW,
         2 to Color.BLUE,
-        3 to Color.BLACK,
-        4 to Color.CYAN,
-        5 to Color.DKGRAY,
-        6 to Color.GREEN,
-        7 to Color.LTGRAY,
-        8 to Color.MAGENTA,
-        9 to Color.YELLOW,
-        10 to Color.RED,
-        11 to Color.BLUE,
-        12 to Color.CYAN,
-        13 to Color.GREEN
+        3 to Color.CYAN,
+        4 to Color.DKGRAY,
+        5 to Color.GREEN,
+        6 to Color.LTGRAY,
+        7 to Color.MAGENTA,
+        8 to Color.YELLOW,
+        9 to Color.BLUE,
+        10 to Color.CYAN,
+        11 to Color.GREEN,
+        12 to Color.LTGRAY,
+        13 to Color.MAGENTA,
+        14 to Color.YELLOW
     )
 
 
@@ -99,13 +102,24 @@ class GridAdapter() : BaseAdapter() {
         view.setPadding(12,0,12,0)
 
         var button: Button = view.findViewById<Button>(R.id.tile) as Button
-        //button.text = dataSource[position].toString()
+        button.setOnClickListener(){
+            currentTile = dataSource[position]!!
+            println(currentTile.getId())
+        }
 
         when(dataSource[position]?.getType()){
-            GameBoard.Companion.TileType.WALL -> button.setBackgroundColor(Color.BLACK)
+            GameBoard.Companion.TileType.WALL -> {
+                button.setBackgroundColor(Color.BLACK)
+                button.isClickable = false
+            }
             GameBoard.Companion.TileType.CLOUD -> button.setBackgroundColor(Color.RED)
-            GameBoard.Companion.TileType.NORMAL -> button.setBackgroundColor(Color.BLUE)
-            else -> {button.setBackgroundColor(Color.WHITE)}
+            GameBoard.Companion.TileType.NORMAL -> {
+                colourDictionary[dataSource[position]?.getId()]?.let {button.setBackgroundColor(it) }
+            }
+            else -> {
+                button.setBackgroundColor(Color.WHITE)
+                button.visibility = View.INVISIBLE  // TODO: may cause problems
+            }
         }
         return view
     }

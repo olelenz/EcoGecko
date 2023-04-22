@@ -6,8 +6,20 @@ import java.util.Collections.min
 
 class Tile(private var parentBoard: GameBoard, private var positionsX: MutableList<Int>, private var positionsY: MutableList<Int>, private val type: GameBoard.Companion.TileType) {
 
+    companion object{
+        var idCreator: Int = 0
+    }
     // false for moving sideways, true for moving up and down
     private var sight: Boolean = setSight()
+    private var id: Int = createId()
+
+    private fun createId(): Int{
+        return idCreator++
+    }
+
+    public fun getId(): Int {
+        return id
+    }
 
     public fun getSight(): Boolean{
         return sight
