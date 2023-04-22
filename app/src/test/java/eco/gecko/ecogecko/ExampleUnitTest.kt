@@ -19,7 +19,7 @@ class ExampleUnitTest {
    fun parseInput(){
        var gameBoard: GameBoard = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
        //gameBoard.parseInputString("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
-       gameBoard.tiles[5].collides(mutableListOf(5, 5), mutableListOf(1, 2))
+       gameBoard.tiles[5].collides(mutableListOf(5, 5), mutableListOf(1, 2), -1)
        assert(true)
    }
 
@@ -27,7 +27,7 @@ class ExampleUnitTest {
     fun parseInputHorizontalChange(){
         var gameBoard: GameBoard = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
         //gameBoard.parseInputString("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
-        gameBoard.tiles[0].collides(mutableListOf(3, 4), mutableListOf(0, 0))
+        gameBoard.tiles[0].collides(mutableListOf(3, 4), mutableListOf(0, 0), -1)
         //gameBoard.tiles[0].collides(mutableListOf(2, 3), mutableListOf(1, 1))
         assert(true)
     }
