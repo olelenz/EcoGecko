@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.GridView
 import androidx.fragment.app.Fragment
+import java.util.Dictionary
 
 
 class GameUI : Fragment() {
@@ -37,23 +38,61 @@ class GameUI : Fragment() {
 
     private fun createNewGame() {
         val adapter = GridAdapter()
+        adapter.fillData()
         grid.adapter = adapter
     }
 }
 
 class GridAdapter() : BaseAdapter() {
 
-    val dataSource = listOf(1, 0, 1, 1, 0, 0,
+    val colourDictionary = mapOf<Int, Int>(
+        0 to Color.WHITE,
+        1 to Color.RED,
+        2 to Color.BLUE,
+        3 to Color.BLACK,
+        4 to Color.CYAN,
+        5 to Color.DKGRAY,
+        6 to Color.GREEN,
+        7 to Color.LTGRAY,
+        8 to Color.MAGENTA,
+        9 to Color.YELLOW,
+        10 to Color.RED,
+        11 to Color.BLUE,
+        12 to Color.CYAN,
+        13 to Color.GREEN
+    )
+
+
+    val dataSourceOld = listOf(1, 0, 1, 1, 0, 0,
                             0, 1, 0, 1, 1, 0,
                             1, 0, 1, 1, 0, 0,
                             0, 1, 0, 1, 1, 0,
                             1, 0, 1, 1, 0, 0,
                             0, 1, 0, 1, 1, 0)
+
+    val dataSource = mutableListOf(0, 0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0, 0,)
     override fun getCount(): Int = dataSource.size
 
     override fun getItem(position: Int): Any = dataSource[position]
 
     override fun getItemId(position: Int): Long = position.toLong()
+
+    fun fillData(){
+        var game: GameBoard = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
+        var id: Int = 1
+        for(tile in game.tiles){
+            for (i in 0 until tile.getPositionX().size){
+                dataSource[(tile.getPositionX()[i]+tile.getPositionY()[i]*6)] = id
+            }
+            id++
+        }
+        println(dataSource)
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view = convertView ?: LayoutInflater.from(parent?.context).inflate(R.layout.list_layout, parent, false)
@@ -61,6 +100,10 @@ class GridAdapter() : BaseAdapter() {
         view.setBackgroundResource(R.drawable.tiles_layout)
         view.setPadding(12,0,12,0)
 
+        var button: Button = view.findViewById<Button>(R.id.tile) as Button
+        button.text = dataSource[position].toString()
+
+        colourDictionary[dataSource[position]]?.let { button.setBackgroundColor(it) }
         return view
     }
 }
