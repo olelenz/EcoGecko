@@ -70,24 +70,22 @@ class GridAdapter() : BaseAdapter() {
                             1, 0, 1, 1, 0, 0,
                             0, 1, 0, 1, 1, 0)
 
-    val dataSource = mutableListOf(0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0,)
+    val nullList: MutableList<Tile?> = mutableListOf()
+    val dataSource_no = mutableListOf<Tile>()
+    val dataSource = arrayOfNulls<Tile>(36)
     override fun getCount(): Int = dataSource.size
 
-    override fun getItem(position: Int): Any = dataSource[position]
+    override fun getItem(position: Int): Any = 1
 
     override fun getItemId(position: Int): Long = position.toLong()
 
     fun fillData(){
+        //nullList.fill(null)
         var game: GameBoard = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
         var id: Int = 1
         for(tile in game.tiles){
             for (i in 0 until tile.getPositionX().size){
-                dataSource[(tile.getPositionX()[i]+tile.getPositionY()[i]*6)] = id
+                dataSource[(tile.getPositionX()[i]+tile.getPositionY()[i]*6)] = tile
             }
             id++
         }
@@ -101,9 +99,14 @@ class GridAdapter() : BaseAdapter() {
         view.setPadding(12,0,12,0)
 
         var button: Button = view.findViewById<Button>(R.id.tile) as Button
-        button.text = dataSource[position].toString()
+        //button.text = dataSource[position].toString()
 
-        colourDictionary[dataSource[position]]?.let { button.setBackgroundColor(it) }
+        when(dataSource[position]?.getType()){
+            GameBoard.Companion.TileType.WALL -> button.setBackgroundColor(Color.BLACK)
+            GameBoard.Companion.TileType.CLOUD -> button.setBackgroundColor(Color.RED)
+            GameBoard.Companion.TileType.NORMAL -> button.setBackgroundColor(Color.BLUE)
+            else -> {button.setBackgroundColor(Color.WHITE)}
+        }
         return view
     }
 }
