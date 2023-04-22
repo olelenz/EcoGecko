@@ -39,6 +39,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gridView"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        />
+
+    <Button
+        android:id="@+id/left_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left_button"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/newGame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/up_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/up_button"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newGame" />
+
+    <Button
+        android:id="@+id/right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right_button"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/newGame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/down_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/down_button"
+        android:layout_marginTop="64dp"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newGame" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
