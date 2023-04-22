@@ -2,6 +2,7 @@ package eco.gecko.ecogecko
 
 import android.graphics.Color
 import android.os.Bundle
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -127,7 +128,10 @@ class GridAdapter : BaseAdapter() {
                 button.setBackgroundColor(Color.BLACK)
                 button.isClickable = false
             }
-            GameBoard.Companion.TileType.CLOUD -> button.setBackgroundResource(R.drawable.ic_launcher_foreground)
+            GameBoard.Companion.TileType.CLOUD -> {
+                button.setText(R.string.car)
+                button.setBackgroundColor(Color.TRANSPARENT)
+            }
             GameBoard.Companion.TileType.NORMAL -> {
                 colourDictionary[dataSource[position]?.getId()]?.let {button.setBackgroundColor(it) }
             }

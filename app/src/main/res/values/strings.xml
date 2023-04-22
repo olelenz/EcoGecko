@@ -3,11 +3,12 @@
 
     <string name="new_game_button">New Game</string>
     <string name="greeting">Dummy PlaceHolder</string>
+    <string name="car">💨</string>
     <string name="tiles_fill" />
-    <string name="left_button">left</string>
-    <string name="right_button">right</string>
-    <string name="up_button">up</string>
-    <string name="down_button">down</string>
+    <string name="left_button">←</string>
+    <string name="right_button">→</string>
+    <string name="up_button">↑</string>
+    <string name="down_button">↓</string>
     <!-- TODO: check later what we need-->
 
     <string name="title_activity_main">MainActivity</string>
