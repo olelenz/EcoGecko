@@ -54,17 +54,25 @@ class GameUI : Fragment() {
         // build grid
         grid.adapter = adapter
 
-        drawButton()
-
+        val game = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
+        for (tile in game.tiles) {
+            if (tile.getPositionX().size == 1) {
+                drawButton(1,1)
+            } else if (tile.getSight() && tile.getPositionX().size != 1) {
+                drawButton(1, tile.getPositionY().size)
+            } else {
+                drawButton(tile.getPositionX().size, 1)
+            }
+        }
     }
-    private fun drawButton() {
+    private fun drawButton(x: Int, y: Int) {
         // FIXME Height
         val tile = Button(context)
         val w = flexbox.width / n
-        val h = flexbox.width / (n+1)
+        val h = flexbox.width / n
         tile.setBackgroundResource(R.drawable.tiles_layout)
-        tile.width = w*2
-        tile.height = h*2
+        tile.width = w*x
+        tile.height = h*y
 
         val layoutParams = FlexboxLayout.LayoutParams(
             FlexboxLayout.LayoutParams.WRAP_CONTENT,
