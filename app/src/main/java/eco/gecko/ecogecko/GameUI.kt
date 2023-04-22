@@ -41,11 +41,34 @@ class GameUI : Fragment() {
         adapter.fillData()
         grid.adapter = adapter
     }
+
+    private fun moveUp(){
+        if (GridAdapter::currentTile.isLateinit) {
+            try {
+                GridAdapter.currentTile.moveUp(1)
+            } catch (e:java.lang.Exception){
+
+            }
+        }
+    }
+
+    private fun moveDown(){
+
+    }
+
+    private fun moveLeft(){
+
+    }
+
+    private fun moveRight(){
+
+    }
 }
 
 class GridAdapter() : BaseAdapter() {
-
-    lateinit var currentTile: Tile
+    companion object{
+        lateinit var currentTile: Tile
+    }
 
     val colourDictionary = mapOf<Int, Int>(
         0 to Color.DKGRAY,
