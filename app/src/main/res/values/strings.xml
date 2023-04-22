@@ -3,7 +3,7 @@
 
     <string name="new_game_button">New Game</string>
     <string name="greeting">Dummy PlaceHolder</string>
-    <string name="p">1</string>
+    <string name="tiles_fill" />
     <string name="left_button">left</string>
     <string name="right_button">right</string>
     <string name="up_button">up</string>

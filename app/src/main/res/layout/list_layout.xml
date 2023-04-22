@@ -10,6 +10,6 @@
         android:id="@+id/tile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/p" />
+        android:text="@string/tiles_fill" />
 
 </LinearLayout>

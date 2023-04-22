@@ -30,14 +30,15 @@
         app:layout_constraintTop_toBottomOf="@+id/dummy" />
 
     <Button
-        android:id="@+id/newGame"
+        android:id="@+id/newGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/new_game_button"
-        android:layout_marginTop="30dp"
+        android:background="@drawable/round_buttons"
+        android:layout_marginBottom="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gridView"/>
+        app:layout_constraintBottom_toTopOf="@id/up_button"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -52,9 +53,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/left_button"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_buttons"
         app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/newGame"
+        app:layout_constraintBottom_toTopOf="@+id/down_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.5"
         />
@@ -64,20 +66,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/up_button"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_buttons"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newGame" />
+        app:layout_constraintBottom_toTopOf="@id/left_button" />
 
     <Button
         android:id="@+id/right_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/right_button"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_buttons"
         app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/newGame"
+        app:layout_constraintBottom_toTopOf="@+id/down_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.5"
         />
@@ -87,11 +91,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/down_button"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/round_buttons"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newGame" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

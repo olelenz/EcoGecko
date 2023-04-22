@@ -9,16 +9,11 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.GridView
 import androidx.fragment.app.Fragment
-import java.util.Dictionary
 
 
 class GameUI : Fragment() {
 
     private lateinit var grid: GridView
-    companion object {
-        private const val n : Int = 6
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,8 +25,8 @@ class GameUI : Fragment() {
         grid = view.findViewById(R.id.gridView)
 
         // newGame Button
-        val newGame = view.findViewById<Button>(R.id.newGame)
-        newGame.setOnClickListener{ createNewGame() }
+        val newGameButton = view.findViewById<Button>(R.id.newGameButton)
+        newGameButton.setOnClickListener{ createNewGame() }
 
         return view
     }
@@ -41,7 +36,7 @@ class GameUI : Fragment() {
         adapter.fillData()
         grid.adapter = adapter
 
-        view?.findViewById<Button>(R.id.up_button)?.setOnClickListener(){moveUp()}
+        view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {moveUp()}
     }
 
     private fun moveUp(){
@@ -71,13 +66,11 @@ class GameUI : Fragment() {
     }
 }
 
-class GridAdapter() : BaseAdapter() {
-    companion object{
-        lateinit var currentTile: Tile
-        lateinit var gameComp: GameBoard
-    }
+class GridAdapter : BaseAdapter() {
 
-    val colourDictionary = mapOf<Int, Int>(
+    private val dataSource = arrayOfNulls<Tile>(36)
+
+    private val colourDictionary = mapOf(
         0 to Color.DKGRAY,
         1 to Color.YELLOW,
         2 to Color.BLUE,
@@ -94,18 +87,10 @@ class GridAdapter() : BaseAdapter() {
         13 to Color.MAGENTA,
         14 to Color.YELLOW
     )
-
-
-    val dataSourceOld = listOf(1, 0, 1, 1, 0, 0,
-                            0, 1, 0, 1, 1, 0,
-                            1, 0, 1, 1, 0, 0,
-                            0, 1, 0, 1, 1, 0,
-                            1, 0, 1, 1, 0, 0,
-                            0, 1, 0, 1, 1, 0)
-
-    val nullList: MutableList<Tile?> = mutableListOf()
-    val dataSource_no = mutableListOf<Tile>()
-    val dataSource = arrayOfNulls<Tile>(36)
+    companion object{
+        lateinit var currentTile: Tile
+        lateinit var gameComp: GameBoard
+    }
     override fun getCount(): Int = dataSource.size
 
     override fun getItem(position: Int): Any = 1
@@ -113,10 +98,9 @@ class GridAdapter() : BaseAdapter() {
     override fun getItemId(position: Int): Long = position.toLong()
 
     fun fillData(){
-        //nullList.fill(null)
-        var game: GameBoard = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
+        val game = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
         gameComp = game
-        var id: Int = 1
+        var id = 1
         for(tile in game.tiles){
             for (i in 0 until tile.getPositionX().size){
                 dataSource[(tile.getPositionX()[i]+tile.getPositionY()[i]*6)] = tile
@@ -132,8 +116,8 @@ class GridAdapter() : BaseAdapter() {
         view.setBackgroundResource(R.drawable.tiles_layout)
         view.setPadding(12,0,12,0)
 
-        var button: Button = view.findViewById<Button>(R.id.tile) as Button
-        button.setOnClickListener(){
+        val button: Button = view.findViewById(R.id.tile) as Button
+        button.setOnClickListener{
             currentTile = dataSource[position]!!
             println(currentTile.getId())
         }
@@ -143,7 +127,7 @@ class GridAdapter() : BaseAdapter() {
                 button.setBackgroundColor(Color.BLACK)
                 button.isClickable = false
             }
-            GameBoard.Companion.TileType.CLOUD -> button.setBackgroundColor(Color.RED)
+            GameBoard.Companion.TileType.CLOUD -> button.setBackgroundResource(R.drawable.ic_launcher_foreground)
             GameBoard.Companion.TileType.NORMAL -> {
                 colourDictionary[dataSource[position]?.getId()]?.let {button.setBackgroundColor(it) }
             }
