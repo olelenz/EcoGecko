@@ -102,6 +102,13 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         return true
     }
 
+    public fun checkWin(): Boolean{
+        if(type == GameBoard.Companion.TileType.CLOUD && max(positionsX) == 5){
+            return true
+        }
+        return false
+    }
+
     public fun moveUp(amount: Int) {
         if (!sight || type == GameBoard.Companion.TileType.WALL){
             throw RuntimeException("Can not move up!")
@@ -183,6 +190,9 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             positionsX = newPositionsX.toMutableList()
         } else {
             throw IndexOutOfBoundsException("You can not move here!")
+        }
+        if (checkWin()){
+            println("you won!")
         }
     }
 
