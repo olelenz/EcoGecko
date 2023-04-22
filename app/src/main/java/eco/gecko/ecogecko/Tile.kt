@@ -44,7 +44,7 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         positionsY.addAll(positionsYInp)
     }
 
-    public fun collides(newXPositions: MutableList<Int>, newYPositions: MutableList<Int>): Boolean{
+    public fun collides(newXPositions: MutableList<Int>, newYPositions: MutableList<Int>, change: Int): Boolean{
         // old positions
         // number of steps taken -> calculate using old and new positions
         // get flagboard
@@ -59,8 +59,8 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         if (sight){  // up or down
             var minY = min(positionsY)
             var newMinY = min(newYPositions)
-            var heightChange: Int = newMinY - minY
-            println(heightChange)
+            var heightChange: Int = change//newMinY - minY
+            println("height change: "+heightChange)
             if (heightChange == 0){
                 println("not possible height")
                 return true
@@ -74,6 +74,7 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
                 }
             } else {
                 for(i in 1 .. heightChange){
+                    println(max(positionsY))
                     if (parentBoard.flagboard[positionsX[0]][max(positionsY)+i]){
                         println("is blocked")
                         return true
@@ -83,8 +84,8 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         } else {  // left or right
             var minX = min(positionsX)
             var newMinX = min(newXPositions)
-            var horizontalChange: Int = newMinX - minX
-            println(horizontalChange)
+            var horizontalChange: Int = change//newMinX - minX
+            println("horizontal change: "+horizontalChange)
             if (horizontalChange == 0){
                 println("not possible horizontal")
                 return true
@@ -107,11 +108,15 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         }
 
         // not blocked -> change flagboard
+        updateFlagboard(newXPositions, newYPositions)
+        return false
+    }
+
+    fun updateFlagboard(newXPositions: MutableList<Int>, newYPositions: MutableList<Int>){
         for (i in 0 until positionsX.size){
             parentBoard.flagboard[positionsX[i]][positionsY[i]] = false  // remove old
             parentBoard.flagboard[newXPositions[i]][newYPositions[i]] = true  // add new
         }
-        return false
     }
 
     public fun checkWin(): Boolean{
@@ -131,7 +136,7 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         }
 
         // check for collisions
-        if (collides(positionsX, newPositionsY)){
+        if (collides(positionsX, newPositionsY, amount)){
             throw RuntimeException("Can not move up! (Collision)")
         }
 
@@ -148,11 +153,11 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         }
         var newPositionsY = positionsY.toMutableList()
         for (ind in 0 until positionsY.size){
-            newPositionsY[ind] = newPositionsY[ind] - amount
+            newPositionsY[ind] = newPositionsY[ind] + amount
         }
 
         // check for collisions
-        if (collides(positionsX, newPositionsY)){
+        if (collides(positionsX, newPositionsY, amount)){
             throw RuntimeException("Can not move down! (Collision)")
         }
 
@@ -169,11 +174,11 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         }
         var newPositionsX = positionsX.toMutableList()
         for (ind in 0 until positionsX.size){
-            newPositionsX[ind] = newPositionsX[ind] - amount
+            newPositionsX[ind] = newPositionsX[ind] + amount
         }
 
         // check for collisions
-        if (collides(newPositionsX, positionsY)){
+        if (collides(newPositionsX, positionsY, amount)){
             throw RuntimeException("Can not move left! (Collision)")
         }
 
@@ -194,7 +199,7 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         }
 
         // check for collisions
-        if (collides(newPositionsX, positionsY)){
+        if (collides(newPositionsX, positionsY, amount)){
             throw RuntimeException("Can not move right! (Collision)")
         }
 

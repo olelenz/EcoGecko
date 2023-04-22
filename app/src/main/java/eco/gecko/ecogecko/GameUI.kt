@@ -33,36 +33,55 @@ class GameUI : Fragment() {
 
     private fun createNewGame() {
         val adapter = GridAdapter()
-        adapter.fillData()
+        adapter.fillData(null)
         grid.adapter = adapter
 
         view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {moveUp()}
+        view?.findViewById<Button>(R.id.down_button)?.setOnClickListener {moveDown()}
+        view?.findViewById<Button>(R.id.left_button)?.setOnClickListener {moveLeft()}
+        view?.findViewById<Button>(R.id.right_button)?.setOnClickListener {moveRight()}
+    }
+
+    private fun updateGame(){
+        val adapter = GridAdapter()
+        adapter.fillData(GridAdapter.gameComp)
+        grid.adapter = adapter
     }
 
     private fun moveUp(){
         try {
-            println(GridAdapter.gameComp.tiles[6].getPositionY())
             GridAdapter.currentTile.moveUp(-1)
-            println("nice")
-            println(GridAdapter.gameComp.tiles[6].getPositionY())
+            updateGame()
         } catch (e:java.lang.Exception){
-            println("not nice")
-            println(GridAdapter.currentTile.getPositionX())
-            println(GridAdapter.currentTile.getPositionY())
-            e.printStackTrace()
+
         }
     }
 
     private fun moveDown(){
+        try {
+            GridAdapter.currentTile.moveDown(1)
+            updateGame()
+        } catch (e:java.lang.Exception){
 
+        }
     }
 
     private fun moveLeft(){
+        try {
+            GridAdapter.currentTile.moveLeft(-1)
+            updateGame()
+        } catch (e:java.lang.Exception){
 
+        }
     }
 
     private fun moveRight(){
+        try {
+            GridAdapter.currentTile.moveRight(1)
+            updateGame()
+        } catch (e:java.lang.Exception){
 
+        }
     }
 }
 
@@ -97,11 +116,14 @@ class GridAdapter : BaseAdapter() {
 
     override fun getItemId(position: Int): Long = position.toLong()
 
-    fun fillData(){
-        val game = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
-        gameComp = game
+    fun fillData(game: GameBoard?){
+        if (game == null){
+            gameComp = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
+        } else {
+            gameComp = game
+        }
         var id = 1
-        for(tile in game.tiles){
+        for(tile in gameComp.tiles){
             for (i in 0 until tile.getPositionX().size){
                 dataSource[(tile.getPositionX()[i]+tile.getPositionY()[i]*6)] = tile
             }
