@@ -5,40 +5,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import eco.gecko.ecogecko.databinding.FragmentFirstBinding
+import android.widget.Button
+import android.widget.TextView
+import com.google.android.flexbox.FlexboxLayout
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    //private lateinit var flexbox: FlexboxLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_first, container, false)
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return binding.root
+        // initializing empty board
+        //flexbox = view.findViewById(R.id.flexbox)
 
+        // newGame Button
+        val newGame = view.findViewById<Button>(R.id.button_first)
+        newGame.setOnClickListener{ println("hi")}
+
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    /*
+    private fun createNewGame() {
+        val adapter = GridAdapter()
+        val textView = TextView(context)
+        textView.text = "New Text"
+        val layoutParams = FlexboxLayout.LayoutParams(
+            FlexboxLayout.LayoutParams.WRAP_CONTENT,
+            FlexboxLayout.LayoutParams.WRAP_CONTENT
+        )
+        textView.layoutParams = layoutParams
+        //flexbox.addView(textView)
+    }*/
 }

@@ -7,8 +7,11 @@
     android:orientation="horizontal">
 
     <Button
+        android:id="@+id/field"
+        android:enabled="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:text="@string/p" />
 
 </LinearLayout>

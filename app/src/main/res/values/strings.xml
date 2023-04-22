@@ -3,7 +3,7 @@
 
     <string name="new_game_button">New Game</string>
     <string name="greeting">Dummy PlaceHolder</string>
-    <string name="p">1</string>
+    <string name="p">""</string>
     <!-- TODO: check later what we need-->
 
     <string name="title_activity_main">MainActivity</string>
