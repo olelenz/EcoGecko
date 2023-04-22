@@ -40,15 +40,21 @@ class GameUI : Fragment() {
         val adapter = GridAdapter()
         adapter.fillData()
         grid.adapter = adapter
+
+        view?.findViewById<Button>(R.id.up_button)?.setOnClickListener(){moveUp()}
     }
 
     private fun moveUp(){
-        if (GridAdapter::currentTile.isLateinit) {
-            try {
-                GridAdapter.currentTile.moveUp(1)
-            } catch (e:java.lang.Exception){
-
-            }
+        try {
+            println(GridAdapter.gameComp.tiles[6].getPositionY())
+            GridAdapter.currentTile.moveUp(-1)
+            println("nice")
+            println(GridAdapter.gameComp.tiles[6].getPositionY())
+        } catch (e:java.lang.Exception){
+            println("not nice")
+            println(GridAdapter.currentTile.getPositionX())
+            println(GridAdapter.currentTile.getPositionY())
+            e.printStackTrace()
         }
     }
 
@@ -68,6 +74,7 @@ class GameUI : Fragment() {
 class GridAdapter() : BaseAdapter() {
     companion object{
         lateinit var currentTile: Tile
+        lateinit var gameComp: GameBoard
     }
 
     val colourDictionary = mapOf<Int, Int>(
@@ -108,6 +115,7 @@ class GridAdapter() : BaseAdapter() {
     fun fillData(){
         //nullList.fill(null)
         var game: GameBoard = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
+        gameComp = game
         var id: Int = 1
         for(tile in game.tiles){
             for (i in 0 until tile.getPositionX().size){

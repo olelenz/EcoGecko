@@ -63,20 +63,20 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             println(heightChange)
             if (heightChange == 0){
                 println("not possible height")
-                return false
+                return true
             }
             if(heightChange < 0){
                 for (i in -1 downTo heightChange){
                     if (parentBoard.flagboard[positionsX[0]][minY+i]) {
                         println("is blocked")
-                        break
+                        return true
                     }
                 }
             } else {
                 for(i in 1 .. heightChange){
                     if (parentBoard.flagboard[positionsX[0]][max(positionsY)+i]){
                         println("is blocked")
-                        break
+                        return true
                     }
                 }
             }
@@ -87,20 +87,20 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             println(horizontalChange)
             if (horizontalChange == 0){
                 println("not possible horizontal")
-                return false
+                return true
             }
             if(horizontalChange < 0){
                 for (i in -1 downTo horizontalChange){
                     if (parentBoard.flagboard[minX+i][positionsY[0]]){
                         println("is blocked")
-                        break
+                        return true
                     }
                 }
             } else {
                 for(i in 1 .. horizontalChange){
                     if (parentBoard.flagboard[max(positionsX)+i][positionsY[0]]){
                         println("is blocked")
-                        break
+                        return true
                     }
                 }
             }
@@ -111,7 +111,7 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             parentBoard.flagboard[positionsX[i]][positionsY[i]] = false  // remove old
             parentBoard.flagboard[newXPositions[i]][newYPositions[i]] = true  // add new
         }
-        return true
+        return false
     }
 
     public fun checkWin(): Boolean{
@@ -126,8 +126,8 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             throw RuntimeException("Can not move up!")
         }
         var newPositionsY = positionsY.toMutableList()
-        for (ind in 0..positionsY.size){
-            newPositionsY[0] = newPositionsY[0] + amount
+        for (ind in 0 until positionsY.size){
+            newPositionsY[ind] = newPositionsY[ind] + amount
         }
 
         // check for collisions
@@ -147,8 +147,8 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             throw RuntimeException("Can not move down!")
         }
         var newPositionsY = positionsY.toMutableList()
-        for (ind in 0..positionsY.size){
-            newPositionsY[0] = newPositionsY[0] - amount
+        for (ind in 0 until positionsY.size){
+            newPositionsY[ind] = newPositionsY[ind] - amount
         }
 
         // check for collisions
@@ -168,8 +168,8 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             throw RuntimeException("Can not move left!")
         }
         var newPositionsX = positionsX.toMutableList()
-        for (ind in 0..positionsX.size){
-            newPositionsX[0] = newPositionsX[0] - amount
+        for (ind in 0 until positionsX.size){
+            newPositionsX[ind] = newPositionsX[ind] - amount
         }
 
         // check for collisions
@@ -189,8 +189,8 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
             throw RuntimeException("Can not move right!")
         }
         var newPositionsX = positionsX.toMutableList()
-        for (ind in 0..positionsX.size){
-            newPositionsX[0] = newPositionsX[0] + amount
+        for (ind in 0 until positionsX.size){
+            newPositionsX[ind] = newPositionsX[ind] + amount
         }
 
         // check for collisions
