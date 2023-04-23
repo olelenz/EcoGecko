@@ -59,13 +59,14 @@ class FragmentGame(var inputString: String) : Fragment() {
         val msg = "Your current points: " + sp2?.getString("xp", "0") + "\n" + "Do you want to spent 10?"
         val snackbar = view?.let { Snackbar.make(it, msg, Snackbar.LENGTH_LONG) }
 
-        if (xp > 10) {
+        if (xp >10 ) {
             snackbar?.setAction("Yes") {
                 xp -= 10
                 val editor = sp2!!.edit()
+                val id: Int = sp2?.getInt("id", 1)!!
                 editor.putString("xp", xp.toString())
+                editor.putInt("id", id+1)
                 editor.apply()
-                // TODO change id + 1 --> one lvl further
             }
         }
         snackbar?.show()
@@ -148,10 +149,17 @@ class FragmentGame(var inputString: String) : Fragment() {
             updateGame()
             if (GridAdapter.currentTile.checkWin()) {
                 Toast.makeText(context, getString(R.string.won), Toast.LENGTH_SHORT).show()
+                sp2 = requireContext().getSharedPreferences("my_prefs2", Context.MODE_PRIVATE)
+                val editor = sp2?.edit()
+                var v: Int = sp2?.getInt("id", 1)!!
+                editor?.putInt("id", v+1)
+                editor?.apply()
                 view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {}
                 view?.findViewById<Button>(R.id.down_button)?.setOnClickListener {}
                 view?.findViewById<Button>(R.id.left_button)?.setOnClickListener {}
                 view?.findViewById<Button>(R.id.right_button)?.setOnClickListener {}
+
+
             }
         } catch (e:java.lang.Exception){
 
