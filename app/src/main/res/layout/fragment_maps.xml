@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.fragment.app.FragmentContainerView xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="1"
+        tools:context=".MapsActivity" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="50dp"
+        >
+        <TextView
+            android:id="@+id/lat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/latitude"
+            android:padding="10dp"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/lon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/longitude"
+            android:padding="10dp"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            android:padding="10dp"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/ca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Carbon emission: "
+            android:padding="10dp"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/aca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Average carbon emission: "
+            android:padding="10dp"
+            android:textSize="18sp"
+            />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:contentDescription="Spinner"
+            android:textSize="18sp"
+            />
+
+        <Button
+            android:id="@+id/journey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_round_dark"
+            android:text="Start Journey"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            />
+        <TextView
+            android:id="@+id/xp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Walk and you will gain xp."
+            android:padding="10dp"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

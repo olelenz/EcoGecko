@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/dark_green">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+
+        <ImageView
+            android:id="@+id/details_image"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/poly_trees"
+            android:scaleType="centerCrop"
+            android:background="@drawable/diamond_shape"
+            android:clipToOutline="true" />
+
+        <!-- TITLE TextView for DetailsFragment -->
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NAME SURNAME"
+            android:letterSpacing="0.05"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/castoro"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="HANS ZIMMER"
+            android:fontFamily="@font/sourcesansproregular"
+            android:textSize="14sp"
+            android:letterSpacing=".1"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/game_level"
+                android:gravity="center"
+                android:layout_gravity="left"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="5dp"
+                android:text="12"
+                android:textSize="22sp"
+                android:fontFamily="@font/castoro"
+                android:background="@drawable/diamond_shape"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/exp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/sourcesansproregular"
+                android:gravity="left"
+                android:letterSpacing=".1"
+                android:text="3 EXP POINTS"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btn_journey"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="JOURNEY"
+            app:icon="@drawable/ic_travel"
+            android:textColor="#FFFFFF"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_round_light"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp" />
+
+        <Button
+            android:id="@+id/btn_food"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="FOOD"
+            app:icon="@drawable/ic_photo"
+            android:layout_margin="10dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_round_light"
+            android:fontFamily="@font/sourcesansproregular"
+            app:backgroundTint="@color/light_pink"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp" />
+
+        <Button
+            android:id="@+id/btn_playgame"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="PLAY GAME️"
+            android:layout_margin="10dp"
+            android:textColor="#FFFFFF"
+            app:icon="@drawable/ic_play"
+            android:background="@drawable/bg_round_light"
+            android:fontFamily="@font/sourcesansproregular"
+            android:paddingLeft="25dp"
+            app:backgroundTint="@color/light_orange"
+            android:paddingRight="25dp"/>
+
+
+        <Button
+            android:id="@+id/btn_carbon_emission"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="CARBON EMISSION"
+
+            android:layout_margin="10dp"
+            android:layout_marginBottom="40dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_outline"
+            android:fontFamily="@font/sourcesansproregular"
+            app:backgroundTint="@color/light_green"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"/>
+
+
+
+    </LinearLayout>
+</ScrollView>
+
+    <!-- app:backgroundTint="@android:color/holo_green_light"-->
+
+    <!--<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="48dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/input_bmi"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Enter data"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/output_bodyfat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:paddingTop="20dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="30dp"
+                android:text="Prediction"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/btn_calculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:text="CALCULATE"
+                android:background="@drawable/bg_round_dark"
+                android:textColor="@color/white"
+                android:letterSpacing="0.1"/>
+
+        </LinearLayout>
+
+
+
+    </ScrollView>-->
