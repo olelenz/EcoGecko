@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import eco.gecko.ecogecko.FragmentDifficulty
 import kotlin.math.roundToInt
 
 
@@ -51,14 +52,14 @@ class HomeFragment : Fragment() {
             fragmentManager?.beginTransaction()?.addToBackStack("food")!!
                 .replace(android.R.id.content, EmissionFragment())
                 .commit()
-        }
+        }*/
         playButton.setOnClickListener{
             fragmentManager?.beginTransaction()?.addToBackStack("play")!!
-                .replace(android.R.id.content, EmissionFragment())
+                .replace(android.R.id.content, FragmentDifficulty())
                 .commit()
         }
 
-         */
+
 
         sharedPreferences =
             requireContext().getSharedPreferences("my_prefs2", Context.MODE_PRIVATE)
