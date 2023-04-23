@@ -1,14 +1,19 @@
 package si.uni_lj.fri.besthack.EcoGecko
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 
 class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverview) : RecyclerView.Adapter<LevelRecyclerAdapter.CardViewHolder?>() {
 
     var level = fragmentLevelOverview.list
+    companion object{
+        var flag: Boolean = true
+    }
 
 
     inner class CardViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
@@ -21,7 +26,10 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
 
             // by pressing one card, go to DetailsFragment
             itemView?.setOnClickListener {
-                openGame(MainActivity.boardList[itemTitle?.text.toString().toInt() - 1])
+                if (itemTitle?.text.toString() != "") {
+                    //openGame(MainActivity.boardList[itemTitle?.text.toString().toInt() - 1])
+                    openGame(MainActivity.boardList[level.get(position)])
+                }
             }
         }
     }
@@ -35,7 +43,7 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): CardViewHolder {
-
+        flag = true
         return CardViewHolder(
             LayoutInflater.from(viewGroup.context)
                 .inflate(R.layout.recycler_level, viewGroup, false)
@@ -47,7 +55,12 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val counter = position + 1
-        holder.itemTitle?.text = counter.toString()
+        var sp2 = fragmentLevelOverview.requireContext()
+            .getSharedPreferences("my_prefs2", Context.MODE_PRIVATE)
+        val id: Int = sp2?.getInt("id", 1)!!.toInt()
+        if (id >= level.get(position)) {
+            holder.itemTitle?.text = level.get(position).toString()
+        }
+
     }
 }

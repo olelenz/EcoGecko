@@ -148,10 +148,17 @@ class FragmentGame(var inputString: String) : Fragment() {
             updateGame()
             if (GridAdapter.currentTile.checkWin()) {
                 Toast.makeText(context, getString(R.string.won), Toast.LENGTH_SHORT).show()
+                sp2 = requireContext().getSharedPreferences("my_prefs2", Context.MODE_PRIVATE)
+                val editor = sp2?.edit()
+                var v: Int = sp2?.getInt("id", 1)!!
+                editor?.putInt("id", v+1)
+                editor?.apply()
                 view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {}
                 view?.findViewById<Button>(R.id.down_button)?.setOnClickListener {}
                 view?.findViewById<Button>(R.id.left_button)?.setOnClickListener {}
                 view?.findViewById<Button>(R.id.right_button)?.setOnClickListener {}
+
+
             }
         } catch (e:java.lang.Exception){
 
