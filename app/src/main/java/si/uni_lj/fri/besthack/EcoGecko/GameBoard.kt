@@ -1,6 +1,4 @@
-package eco.gecko.ecogecko
-
-import java.io.BufferedReader
+package si.uni_lj.fri.besthack.EcoGecko
 
 
 /*

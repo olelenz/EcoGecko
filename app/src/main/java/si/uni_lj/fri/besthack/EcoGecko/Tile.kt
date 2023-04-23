@@ -1,6 +1,6 @@
-package eco.gecko.ecogecko
+package si.uni_lj.fri.besthack.EcoGecko
 
-import eco.gecko.ecogecko.GameBoard.Companion.checkCoordinates
+import si.uni_lj.fri.besthack.EcoGecko.GameBoard.Companion.checkCoordinates
 import java.util.Collections.max
 import java.util.Collections.min
 

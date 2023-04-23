@@ -1,4 +1,4 @@
-package eco.gecko.ecogecko
+package si.uni_lj.fri.besthack.EcoGecko
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import si.uni_lj.fri.besthack.EcoGecko.MainActivity
-import si.uni_lj.fri.besthack.EcoGecko.R
 
 class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficulty) : RecyclerView.Adapter<DifficultyRecyclerAdapter.CardViewHolder?>() {
 
