@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import si.uni_lj.fri.besthack.EcoGecko.MainActivity
+import si.uni_lj.fri.besthack.EcoGecko.R
 
 class FragmentLevelOverview(var level: Int) : Fragment() {
     val list = setList()

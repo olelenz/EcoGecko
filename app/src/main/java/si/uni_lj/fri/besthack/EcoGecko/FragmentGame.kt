@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import si.uni_lj.fri.besthack.EcoGecko.R
 
 
 class FragmentGame(var inputString: String) : Fragment() {

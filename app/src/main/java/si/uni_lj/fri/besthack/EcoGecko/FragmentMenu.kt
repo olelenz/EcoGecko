@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import si.uni_lj.fri.besthack.EcoGecko.R
 
 class FragmentMenu : Fragment() {
 
