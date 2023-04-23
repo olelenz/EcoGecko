@@ -60,7 +60,9 @@ class EmissionFragment : Fragment() {
             val ortEnvironment = OrtEnvironment.getEnvironment()
             val ortSession = createORTSession(ortEnvironment)
             val output = runPrediction(ortSession, ortEnvironment)
-            outputTextView.text = "CO2 emission output is ${output}"
+
+            val roundedoutput = String.format("%.2f", output)
+            outputTextView.text = roundedoutput
 
         }
         return view
@@ -72,25 +74,9 @@ class EmissionFragment : Fragment() {
         return ortEnvironment.createSession( modelBytes )
     }
 
-
-    // Make predictions with given inputs
-    /* fun runPrediction( input : Float , ortSession: OrtSession , ortEnvironment: OrtEnvironment ) : Float {
-        // Get the name of the input node
-        val inputName = ortSession.inputNames?.iterator()?.next()
-        // Make a FloatBuffer of the inputs
-        val floatBufferInputs = FloatBuffer.wrap( floatArrayOf( input ) )
-        // Create input tensor with floatBufferInputs of shape ( 1 , 1 )
-        val inputTensor = OnnxTensor.createTensor( ortEnvironment , floatBufferInputs , longArrayOf( 1, 1 ) )
-        // Run the model
-        val results = ortSession.run( mapOf( inputName to inputTensor ) )
-        // Fetch and return the results
-        val output = results[0].value as Array<FloatArray>
-        return output[0][0]
-    }*/
-
     private fun runPrediction(ortSession: OrtSession, ortEnvironment: OrtEnvironment): Float {
-        // Get the name of the input node
-        //val value = input.toFloat()
+        // GET DATA
+        // Get travel and electricity data from EditText and SharedPreferences
         sharedPreferences =
             requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val motorBike:Float = sharedPreferences?.getString("Medium Motorcycle \uD83C\uDFCD", "0.0")!!
@@ -103,12 +89,14 @@ class EmissionFragment : Fragment() {
             inputed = inputEditText!!.text.toString().toFloat()
         }
 
+        // TEST INPUT FOR THE MODEL
         //val value = floatArrayOf(720f, 10f, 750f, 0f, 112f)
+
+        // Create float array of inputs
         val value = floatArrayOf(inputed, motorBike!!.toFloat(), car!!.toFloat(), 0f, bus!!.toFloat())
         val inputName = ortSession.inputNames?.iterator()?.next()
         // Make a FloatBuffer of the inputs
         val floatBufferInputs = FloatBuffer.wrap(value)
-        // Create input tensor with floatBufferInputs of shape ( 1 , 1 )
         val inputTensor = OnnxTensor.createTensor(ortEnvironment, floatBufferInputs, longArrayOf(1, 5))
         // Run the model
         val options = OrtSession.RunOptions().apply {
@@ -118,24 +106,5 @@ class EmissionFragment : Fragment() {
         val output = results[0].value as Array<FloatArray>
         return output[0][0]
     }
-    //Iris
-
-    /*private fun runPrediction(input: String, ortSession: OrtSession, ortEnvironment: OrtEnvironment): String {
-        // Get the name of the input node
-        //val value = input.toFloat()
-        val value = floatArrayOf(0.6f,0.6f,0.6f,0.6f, 0.6f)
-        val inputName = ortSession.inputNames?.iterator()?.next()
-        // Make a FloatBuffer of the inputs
-        val floatBufferInputs = FloatBuffer.wrap(value)
-        // Create input tensor with floatBufferInputs of shape ( 1 , 1 )
-        val inputTensor = OnnxTensor.createTensor(ortEnvironment, floatBufferInputs, longArrayOf(1, 5))
-        // Run the model
-        val options = OrtSession.RunOptions().apply {
-            logLevel = OrtLoggingLevel.ORT_LOGGING_LEVEL_VERBOSE
-        }
-        val results = ortSession.run(mapOf(inputName to inputTensor), options)
-        val rawOutput = results[0].value
-        return (rawOutput as LongArray).toList().toString()
-    }*/
 
 }

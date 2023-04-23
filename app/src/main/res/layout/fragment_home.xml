@@ -97,6 +97,7 @@
             app:icon="@drawable/ic_travel"
             android:textColor="#FFFFFF"
             android:layout_margin="10dp"
+            app:backgroundTint="@color/light_blueish"
             android:background="@drawable/bg_round_light"
             android:paddingLeft="25dp"
             android:paddingRight="25dp" />
@@ -109,7 +110,7 @@
             app:icon="@drawable/ic_photo"
             android:layout_margin="10dp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/bg_round_light"
+            android:background="@drawable/bg_round_dark"
             android:fontFamily="@font/sourcesansproregular"
             app:backgroundTint="@color/light_pink"
             android:paddingLeft="25dp"

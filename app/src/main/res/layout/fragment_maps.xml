@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/dark_green">
 
     <androidx.fragment.app.FragmentContainerView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
@@ -24,7 +26,9 @@
             android:layout_height="wrap_content"
             android:text="@string/latitude"
             android:padding="10dp"
+            android:layout_marginTop="10dp"
             android:textSize="18sp"
+            android:fontFamily="@font/sourcesansproregular"
             />
 
         <TextView
@@ -34,6 +38,7 @@
             android:text="@string/longitude"
             android:padding="10dp"
             android:textSize="18sp"
+            android:fontFamily="@font/sourcesansproregular"
             />
 
         <TextView
@@ -43,6 +48,7 @@
             android:text="Distance"
             android:padding="10dp"
             android:textSize="18sp"
+            android:fontFamily="@font/sourcesansproregular"
             />
         <TextView
             android:id="@+id/ca"
@@ -59,6 +65,7 @@
             android:text="Average carbon emission: "
             android:padding="10dp"
             android:textSize="18sp"
+            android:fontFamily="@font/sourcesansproregular"
             />
 
         <Spinner
@@ -67,6 +74,7 @@
             android:layout_height="48dp"
             android:contentDescription="Spinner"
             android:textSize="18sp"
+            android:fontFamily="@font/sourcesansproregular"
             />
 
         <Button
@@ -75,9 +83,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/bg_round_dark"
+            app:backgroundTint="@android:color/holo_green_light"
             android:text="Start Journey"
+            android:layout_margin="20dp"
             android:paddingLeft="80dp"
             android:paddingRight="80dp"
+            android:fontFamily="@font/sourcesansproregular"
             />
         <TextView
             android:id="@+id/xp"
@@ -86,6 +97,7 @@
             android:text="Walk and you will gain xp."
             android:padding="10dp"
             android:textSize="18sp"
+            android:fontFamily="@font/sourcesansproregular"
             />
 
     </LinearLayout>

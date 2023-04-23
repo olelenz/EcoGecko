@@ -5,26 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/white">
+    android:background="@color/black">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:paddingTop="48dp"
         android:paddingBottom="48dp"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:paddingTop="20dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="20dp"
+            android:text="CARBON EMISSIONS CALCULATOR"
+            android:background="@drawable/button_outline"
+            android:fontFamily="@font/sourcesansproregular"
+            android:textColor="@color/white"
+            android:layout_margin="20dp"
+            android:letterSpacing="0.05"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:paddingTop="20dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="20dp"
+            android:text="Carbon emissions calculator uses data from journey/travelling entries of the user and type of transport they used, along with the amount of electricity used. It was trained on annual data per capita for Germany. Please input amount of electricity used."
+            android:fontFamily="@font/sourcesansproregular"
+            android:background="@color/beige"
+            android:textColor="@color/black"
+            android:letterSpacing="0.05"/>
 
         <EditText
             android:id="@+id/input_electricity"
             android:layout_width="200dp"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:hint="Enter electricity in float"
-            android:text="0"
+            android:hint="Enter electricity (decimal number, in kilowatt-hour)"
+            android:text="0.0"
             android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/btn_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="CALCULATE"
+            android:fontFamily="@font/sourcesansproregular"
+            app:backgroundTint="@color/black"
+            android:background="@drawable/button_outline"
+            android:textColor="@color/white"
+            android:letterSpacing="0.1"/>
 
         <TextView
             android:id="@+id/output_bodyfat"
@@ -33,25 +84,18 @@
             android:layout_marginBottom="3dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:paddingTop="20dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
             android:paddingBottom="30dp"
-            android:text="Prediction"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/btn_calculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:text="CALCULATE"
-            android:background="@drawable/bg_round_dark"
+            android:text="0.00"
+            android:background="@drawable/diamond_shape"
+            android:fontFamily="@font/sourcesansproregular"
             android:textColor="@color/white"
-            android:letterSpacing="0.1"/>
+            android:letterSpacing="0.05"/>
+
+
 
     </LinearLayout>
 
