@@ -59,13 +59,14 @@ class FragmentGame(var inputString: String) : Fragment() {
         val msg = "Your current points: " + sp2?.getString("xp", "0") + "\n" + "Do you want to spent 10?"
         val snackbar = view?.let { Snackbar.make(it, msg, Snackbar.LENGTH_LONG) }
 
-        if (xp > 10) {
+        if (xp >10 ) {
             snackbar?.setAction("Yes") {
                 xp -= 10
                 val editor = sp2!!.edit()
+                val id: Int = sp2?.getInt("id", 1)!!
                 editor.putString("xp", xp.toString())
+                editor.putInt("id", id+1)
                 editor.apply()
-                // TODO change id + 1 --> one lvl further
             }
         }
         snackbar?.show()
