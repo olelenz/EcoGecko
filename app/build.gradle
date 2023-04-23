@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "si.uni_lj.fri.besthack.EcoGecko"
-        minSdk 31
+        minSdk 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -19,6 +19,7 @@ android {
     }
     buildFeatures{
         viewBinding true
+        mlModelBinding true
     }
 
     buildTypes {
@@ -43,6 +44,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.microsoft.onnxruntime:onnxruntime-android:latest.release'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

@@ -45,12 +45,12 @@ class HomeFragment : Fragment() {
                 .replace(android.R.id.content, EmissionFragment())
                 .commit()
         }
-        /*
+
         foodButton.setOnClickListener{
             fragmentManager?.beginTransaction()?.addToBackStack("food")!!
-                .replace(android.R.id.content, EmissionFragment())
+                .replace(android.R.id.content, FoodFragment())
                 .commit()
-        }*/
+        }
         playButton.setOnClickListener{
             fragmentManager?.beginTransaction()?.addToBackStack("play")!!
                 .replace(android.R.id.content, FragmentDifficulty())
