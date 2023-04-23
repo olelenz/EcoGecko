@@ -13,7 +13,7 @@
     <string name="up_button">↑</string>
     <string name="down_button">↓</string>
 
-    <!-- MainMenu -->
+    <!-- FragmentMenu -->
     <string name="track_button">Track</string>
     <string name="play_button">Play</string>
 

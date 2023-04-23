@@ -3,14 +3,12 @@ package eco.gecko.ecogecko
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.provider.Settings.Global.getString
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
-import android.widget.GridLayout
 import android.widget.GridView
 import androidx.fragment.app.Fragment
 
@@ -29,7 +27,7 @@ class GameUI : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.game_ui, container, false)
+        val view = inflater.inflate(R.layout.fragment_game, container, false)
 
         // getting screen sizes
         displayMetrics = DisplayMetrics()
@@ -54,7 +52,7 @@ class GameUI : Fragment() {
     private fun returnToMenu() {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, MainMenu())
+        transaction.replace(R.id.fragment_container, FragmentMenu())
         transaction.addToBackStack(null)
         transaction.commit()
     }

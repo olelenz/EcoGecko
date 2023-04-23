@@ -1,13 +1,8 @@
 package eco.gecko.ecogecko
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.ListFragment
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import eco.gecko.ecogecko.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         // ListFragment is our StartFragment
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.fragment_container, MainMenu())
+        transaction.add(R.id.fragment_container, FragmentMenu())
         transaction.commit()
     }
 }
