@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,11 +38,17 @@ class FragmentLevelOverview(var level: Int) : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_level_overview, container, false)
+
+        val textView = view.findViewById<TextView>(R.id.cur_dif)
+        var curDif = "You selected difficulty: $level"
+        textView.text = curDif
+
         recyclerView = view.findViewById(R.id.recycler_view_level)
         layoutManager = LinearLayoutManager(view.context)
         recyclerView?.layoutManager = layoutManager
         adapter = LevelRecyclerAdapter(this)
         recyclerView?.adapter = adapter
+
 
         return view
     }

@@ -21,7 +21,7 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
 
             // by pressing one card, go to DetailsFragment
             itemView?.setOnClickListener {
-                openGame(MainActivity.boardList[level[position]])
+                openGame(MainActivity.boardList[itemTitle?.text.toString().toInt() - 1])
             }
         }
     }
@@ -47,6 +47,7 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        holder.itemTitle?.text = level[position].toString()
+        val counter = position + 1
+        holder.itemTitle?.text = counter.toString()
     }
 }
