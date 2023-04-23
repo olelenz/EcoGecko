@@ -1,5 +1,7 @@
 package si.uni_lj.fri.besthack.EcoGecko
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +13,14 @@ import android.widget.GridView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 
 
 class FragmentGame(var inputString: String) : Fragment() {
 
     private lateinit var grid: GridView
     private var counterMoves: Int = 0
+    private var  sp2: SharedPreferences? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,9 +43,20 @@ class FragmentGame(var inputString: String) : Fragment() {
 
         // Return Button -
         val returnButton = view.findViewById<Button>(R.id.returnButton)
-        returnButton.setOnClickListener{ returnToMenu() }
+        returnButton.setOnClickListener { returnToMenu() }
+
+        // Rewards Button
+        val rewardsButton = view.findViewById<Button>(R.id.rewards)
+        rewardsButton.setOnClickListener { rewardsCheck() }
 
         return view
+    }
+
+    private fun rewardsCheck() {
+        sp2 = requireContext().getSharedPreferences("my_prefs2", Context.MODE_PRIVATE)
+        val msg = sp2?.getString("xp", "0")
+        val snackbar = view?.let { Snackbar.make(it, msg!!, Snackbar.LENGTH_LONG) }
+        snackbar?.show()
     }
 
     private fun initButtons(view: View) {
