@@ -29,9 +29,9 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
     fun onclickLevel(level: Int){
         val fragmentManager = difficultyFragment.requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, FragmentLevelOverview(level))
-        transaction.addToBackStack(null)
-        transaction.commit()
+        transaction.replace(android.R.id.content, FragmentLevelOverview(level))
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): CardViewHolder {

@@ -69,7 +69,7 @@ class FragmentGame(var inputString: String) : Fragment() {
     private fun returnToMenu() {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, FragmentMenu())
+        transaction.replace(android.R.id.content, HomeFragment())
         transaction.addToBackStack(null)
         for (i in 0 until fragmentManager.backStackEntryCount) {
             fragmentManager.popBackStack()
