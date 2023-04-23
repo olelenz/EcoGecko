@@ -38,7 +38,7 @@ class FragmentGame(var inputString: String) : Fragment() {
 
         resetButton.performClick()
 
-        // Return Button
+        // Return Button -
         val returnButton = view.findViewById<Button>(R.id.returnButton)
         returnButton.setOnClickListener{ returnToMenu() }
 
