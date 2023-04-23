@@ -18,8 +18,8 @@
 
     <GridView
         android:id="@+id/gridView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginTop="64dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -28,17 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dummy" />
-
-    <Button
-        android:id="@+id/newGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_game_button"
-        android:background="@drawable/round_buttons"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/up_button"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -49,14 +38,40 @@
         />
 
     <Button
-        android:id="@+id/left_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/newGameButton"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:text="@string/new_game_button"
+        android:background="@drawable/round_buttons"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintBottom_toTopOf="@+id/up_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <Button
+        android:id="@+id/returnButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/return_button"
+        android:background="@drawable/round_buttons"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintBottom_toTopOf="@+id/up_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <Button
+        android:id="@+id/left_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:text="@string/left_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/round_buttons"
+        android:background="@drawable/bg_round_dark"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintBottom_toTopOf="@+id/down_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,13 +80,15 @@
 
     <Button
         android:id="@+id/up_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:text="@string/up_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/round_buttons"
+        android:background="@drawable/bg_round_dark"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,28 +96,31 @@
 
     <Button
         android:id="@+id/right_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:text="@string/right_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/round_buttons"
+        android:background="@drawable/bg_round_dark"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintBottom_toTopOf="@+id/down_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        />
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/down_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:text="@string/down_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/round_buttons"
+        android:background="@drawable/bg_round_dark"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
