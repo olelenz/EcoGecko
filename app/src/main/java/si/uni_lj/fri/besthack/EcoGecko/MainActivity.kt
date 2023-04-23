@@ -26,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val data = readData()
+        data.forEach { levelList.add(it.first) }
+        data.forEach { boardList.add(it.second) }
+        setOfDifficulties = levelList.toSet()
+
         supportFragmentManager.beginTransaction().addToBackStack("home")
             .replace(android.R.id.content, HomeFragment())
             .commit()
