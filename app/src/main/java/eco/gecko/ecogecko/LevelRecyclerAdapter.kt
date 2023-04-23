@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverview) : RecyclerView.Adapter<LevelRecyclerAdapter.CardViewHolder?>() {
 
-    private var level = listOf("1", "2", "3", "4")
+    var level = fragmentLevelOverview.list
+
 
     inner class CardViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         var itemTitle: TextView? = null
@@ -20,15 +21,15 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
 
             // by pressing one card, go to DetailsFragment
             itemView?.setOnClickListener {
-                openGame()
+                openGame(MainActivity.boardList[level[position]])
             }
         }
     }
 
-    private fun openGame() {
+    private fun openGame(inputString: String) {
         val fragmentManager = fragmentLevelOverview.requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, FragmentGame())
+        transaction.replace(R.id.fragment_container, FragmentGame(inputString))
         transaction.addToBackStack(null)
         transaction.commit()
     }
@@ -46,6 +47,6 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        holder.itemTitle?.text = level[position]
+        holder.itemTitle?.text = level[position].toString()
     }
 }

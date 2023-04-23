@@ -11,7 +11,7 @@ import android.widget.GridView
 import androidx.fragment.app.Fragment
 
 
-class FragmentGame : Fragment() {
+class FragmentGame(var inputString: String) : Fragment() {
 
     private lateinit var grid: GridView
     override fun onCreateView(
@@ -44,7 +44,7 @@ class FragmentGame : Fragment() {
     }
 
     private fun createNewGame() {
-        val adapter = GridAdapter()
+        val adapter = GridAdapter(inputString)
         adapter.fillData(null)
         grid.adapter = adapter
 
@@ -55,7 +55,7 @@ class FragmentGame : Fragment() {
     }
 
     private fun updateGame(){
-        val adapter = GridAdapter()
+        val adapter = GridAdapter(inputString)
         adapter.fillData(GridAdapter.gameComp)
         grid.adapter = adapter
     }
@@ -97,7 +97,7 @@ class FragmentGame : Fragment() {
     }
 }
 
-class GridAdapter : BaseAdapter() {
+class GridAdapter(var inputString: String) : BaseAdapter() {
 
     private val dataSource = arrayOfNulls<Tile>(36)
 
@@ -130,7 +130,8 @@ class GridAdapter : BaseAdapter() {
 
     fun fillData(game: GameBoard?){
         if (game == null){
-            gameComp = GameBoard("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
+            Tile.idCreator = 0
+            gameComp = GameBoard(inputString)//("ooBBoxDDDKooAAJKoMooJEEMIFFLooIGGLox")
         } else {
             gameComp = game
         }

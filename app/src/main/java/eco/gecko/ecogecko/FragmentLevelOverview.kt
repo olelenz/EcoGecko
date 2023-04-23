@@ -10,13 +10,26 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class FragmentLevelOverview : Fragment() {
+class FragmentLevelOverview(var level: Int) : Fragment() {
+    val list = setList()
 
     companion object {
         private var recyclerView: RecyclerView? = null
         private var adapter: RecyclerView.Adapter<*>? = null
         private var layoutManager: RecyclerView.LayoutManager? = null
     }
+
+    private fun setList(): List<Int>{
+        var out: MutableList<String> = mutableListOf()
+        var indices: List<Int> = MainActivity.levelList.indexesOf(level)
+        for(index in indices){
+            out.add(MainActivity.boardList[index])
+        }
+        return indices
+    }
+
+    fun <E> Iterable<E>.indexesOf(e: E)
+            = mapIndexedNotNull{ index, elem -> index.takeIf{ elem == e } }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
