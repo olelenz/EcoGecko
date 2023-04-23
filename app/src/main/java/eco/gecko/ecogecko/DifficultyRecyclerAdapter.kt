@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficulty) : RecyclerView.Adapter<DifficultyRecyclerAdapter.CardViewHolder?>() {
 
-    private var level = MainActivity.setOfDifficulties.toList()
+    private var difficulty = MainActivity.setOfDifficulties.toList()
 
     inner class CardViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         var itemTitle: TextView? = null
@@ -43,7 +43,7 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
     }
 
     override fun getItemCount(): Int {
-        return level.size
+        return difficulty.size
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
@@ -52,6 +52,6 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
         layoutParams.width = 200
         holder.itemView.layoutParams = layoutParams
 
-        holder.itemTitle?.text = level[position].toString()
+        holder.itemTitle?.text = difficulty[position].toString()
     }
 }
