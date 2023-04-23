@@ -1,13 +1,16 @@
 package eco.gecko.ecogecko
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.provider.Settings.Global.getString
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
+import android.widget.GridLayout
 import android.widget.GridView
 import androidx.fragment.app.Fragment
 
@@ -15,12 +18,24 @@ import androidx.fragment.app.Fragment
 class GameUI : Fragment() {
 
     private lateinit var grid: GridView
+    private lateinit var displayMetrics: DisplayMetrics
+
+    companion object {
+        private var displayWidth: Int = 0
+        private var displayHeight: Int = 0
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.game_ui, container, false)
+
+        // getting screen sizes
+        displayMetrics = DisplayMetrics()
+        (context as Activity).getWindowManager().defaultDisplay.getMetrics(displayMetrics)
+        displayWidth = displayMetrics.widthPixels
+        displayHeight = displayMetrics.heightPixels
 
         // initializing empty board
         grid = view.findViewById(R.id.gridView)
@@ -29,7 +44,19 @@ class GameUI : Fragment() {
         val newGameButton = view.findViewById<Button>(R.id.newGameButton)
         newGameButton.setOnClickListener{ createNewGame() }
 
+        // Return Button
+        val returnButton = view.findViewById<Button>(R.id.returnButton)
+        returnButton.setOnClickListener{ returnToMenu() }
+
         return view
+    }
+
+    private fun returnToMenu() {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, MainMenu())
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     private fun createNewGame() {
@@ -137,6 +164,7 @@ class GridAdapter : BaseAdapter() {
         val view = convertView ?: LayoutInflater.from(parent?.context).inflate(R.layout.list_layout, parent, false)
 
         view.setBackgroundResource(R.drawable.tiles_layout)
+        // TODO think about it
         view.setPadding(12,0,12,0)
 
         val button: Button = view.findViewById(R.id.tile) as Button
@@ -147,8 +175,8 @@ class GridAdapter : BaseAdapter() {
 
         when(dataSource[position]?.getType()){
             GameBoard.Companion.TileType.WALL -> {
-                button.setBackgroundColor(Color.BLACK)
-                button.isClickable = false
+                button.setText(R.string.wall)
+                button.setBackgroundColor(Color.TRANSPARENT)
             }
             GameBoard.Companion.TileType.CLOUD -> {
                 button.setText(R.string.car)
@@ -162,6 +190,7 @@ class GridAdapter : BaseAdapter() {
                 button.visibility = View.INVISIBLE  // TODO: may cause problems
             }
         }
+
         return view
     }
 }
