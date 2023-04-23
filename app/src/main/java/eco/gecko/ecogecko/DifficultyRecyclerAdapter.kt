@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficulty) : RecyclerView.Adapter<DifficultyRecyclerAdapter.CardViewHolder?>() {
 
-    private var level = listOf("1","2","3","4")
+    private var level = MainActivity.setOfDifficulties.toList()
 
     inner class CardViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         var itemTitle: TextView? = null
@@ -19,8 +19,15 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
             }
 
             // by pressing one card, go to DetailsFragment
-            itemView?.setOnClickListener { }
+            itemView?.setOnClickListener {
+                onclickLevel(this.itemTitle?.text.toString().toInt())
+            }
         }
+    }
+
+    fun onclickLevel(level: Int){
+        println("level: "+level)
+        // add transaction to new fragment
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): CardViewHolder {
@@ -37,7 +44,7 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         println(level[position])
-        holder.itemTitle?.text = level[position]
+        holder.itemTitle?.text = level[position].toString()
     }
 
 }
