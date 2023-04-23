@@ -24,9 +24,18 @@ class FragmentGame(var inputString: String) : Fragment() {
         // initializing empty board
         grid = view.findViewById(R.id.gridView)
 
+
         // newGame Button
         val newGameButton = view.findViewById<Button>(R.id.newGameButton)
+        newGameButton.text = "Reset"
         newGameButton.setOnClickListener{ createNewGame() }
+
+        view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {moveUp()}
+        view?.findViewById<Button>(R.id.down_button)?.setOnClickListener {moveDown()}
+        view?.findViewById<Button>(R.id.left_button)?.setOnClickListener {moveLeft()}
+        view?.findViewById<Button>(R.id.right_button)?.setOnClickListener {moveRight()}
+
+        newGameButton.performClick()
 
         // Return Button
         val returnButton = view.findViewById<Button>(R.id.returnButton)
@@ -40,6 +49,9 @@ class FragmentGame(var inputString: String) : Fragment() {
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, FragmentMenu())
         transaction.addToBackStack(null)
+        for (i in 0 until fragmentManager.getBackStackEntryCount()) {
+            fragmentManager.popBackStack()
+        }
         transaction.commit()
     }
 
@@ -47,11 +59,6 @@ class FragmentGame(var inputString: String) : Fragment() {
         val adapter = GridAdapter(inputString)
         adapter.fillData(null)
         grid.adapter = adapter
-
-        view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {moveUp()}
-        view?.findViewById<Button>(R.id.down_button)?.setOnClickListener {moveDown()}
-        view?.findViewById<Button>(R.id.left_button)?.setOnClickListener {moveLeft()}
-        view?.findViewById<Button>(R.id.right_button)?.setOnClickListener {moveRight()}
     }
 
     private fun updateGame(){
@@ -135,14 +142,11 @@ class GridAdapter(var inputString: String) : BaseAdapter() {
         } else {
             gameComp = game
         }
-        var id = 1
         for(tile in gameComp.tiles){
             for (i in 0 until tile.getPositionX().size){
                 dataSource[(tile.getPositionX()[i]+tile.getPositionY()[i]*6)] = tile
             }
-            id++
         }
-        println(dataSource)
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
