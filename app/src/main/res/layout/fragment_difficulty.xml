@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-tools:context=".GameUI">
+tools:context=".FragmentDifficulty">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

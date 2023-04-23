@@ -1,9 +1,7 @@
 package eco.gecko.ecogecko
 
-import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,7 @@ import android.widget.GridView
 import androidx.fragment.app.Fragment
 
 
-class GameUI : Fragment() {
+class FragmentGame : Fragment() {
 
     private lateinit var grid: GridView
     //private lateinit var displayMetrics: DisplayMetrics

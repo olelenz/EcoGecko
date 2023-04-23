@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import eco.gecko.ecogecko.databinding.ActivityMainBinding
+import eco.gecko.ecogecko.databinding.FragmentGameBinding
 import java.io.BufferedReader
 import java.io.InputStream
 
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         // ListFragment is our StartFragment
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.fragment_container, FragmentMenu())
+        transaction.add(R.id.fragment_container, FragmentGame())
         transaction.commit()
     }
 
