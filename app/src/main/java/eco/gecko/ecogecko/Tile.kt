@@ -208,9 +208,10 @@ class Tile(private var parentBoard: GameBoard, private var positionsX: MutableLi
         } else {
             throw IndexOutOfBoundsException("You can not move here!")
         }
+        /*
         if (checkWin()){
             println("you won!")
-        }
+        }*/
     }
 
     private fun setSight(): Boolean{

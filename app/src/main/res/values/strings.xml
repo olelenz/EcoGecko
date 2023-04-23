@@ -2,9 +2,9 @@
     <string name="app_name">EcoGecko</string>
 
     <!-- GameUi -->
-    <string name="new_game_button">New</string>
+    <string name="reset_button">Reset</string>
     <string name="return_button">Menu</string>
-    <string name="greeting">Dummy PlaceHolder</string>
+    <string name="counter">Movements: </string>
     <string name="car">💨</string>
     <string name="wall">🧱</string>
     <string name="tiles_fill" />
@@ -12,6 +12,7 @@
     <string name="right_button">→</string>
     <string name="up_button">↑</string>
     <string name="down_button">↓</string>
+    <string name="won">YOU WON!!!</string>
 
     <!-- FragmentMenu -->
     <string name="track_button">Track</string>

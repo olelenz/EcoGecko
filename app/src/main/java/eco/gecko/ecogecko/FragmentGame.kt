@@ -8,12 +8,16 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.GridView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 
 
 class FragmentGame(var inputString: String) : Fragment() {
 
     private lateinit var grid: GridView
+    private var counterMoves: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,16 +30,13 @@ class FragmentGame(var inputString: String) : Fragment() {
 
 
         // newGame Button
-        val newGameButton = view.findViewById<Button>(R.id.newGameButton)
-        newGameButton.text = "Reset"
-        newGameButton.setOnClickListener{ createNewGame() }
+        val resetButton = view.findViewById<Button>(R.id.resetButton)
+        resetButton.setOnClickListener{
+            createNewGame()
+            initButtons(view)
+        }
 
-        view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {moveUp()}
-        view?.findViewById<Button>(R.id.down_button)?.setOnClickListener {moveDown()}
-        view?.findViewById<Button>(R.id.left_button)?.setOnClickListener {moveLeft()}
-        view?.findViewById<Button>(R.id.right_button)?.setOnClickListener {moveRight()}
-
-        newGameButton.performClick()
+        resetButton.performClick()
 
         // Return Button
         val returnButton = view.findViewById<Button>(R.id.returnButton)
@@ -44,12 +45,19 @@ class FragmentGame(var inputString: String) : Fragment() {
         return view
     }
 
+    private fun initButtons(view: View) {
+        view.findViewById<Button>(R.id.up_button)?.setOnClickListener {moveUp()}
+        view.findViewById<Button>(R.id.down_button)?.setOnClickListener {moveDown()}
+        view.findViewById<Button>(R.id.left_button)?.setOnClickListener {moveLeft()}
+        view.findViewById<Button>(R.id.right_button)?.setOnClickListener {moveRight()}
+    }
+
     private fun returnToMenu() {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, FragmentMenu())
         transaction.addToBackStack(null)
-        for (i in 0 until fragmentManager.getBackStackEntryCount()) {
+        for (i in 0 until fragmentManager.backStackEntryCount) {
             fragmentManager.popBackStack()
         }
         transaction.commit()
@@ -59,17 +67,28 @@ class FragmentGame(var inputString: String) : Fragment() {
         val adapter = GridAdapter(inputString)
         adapter.fillData(null)
         grid.adapter = adapter
+
+        counterMoves = 0
+
+        val textView = view?.findViewById<TextView>(R.id.counter)
+        val moves = getString(R.string.counter) + counterMoves.toString()
+        textView?.text = moves
     }
 
     private fun updateGame(){
         val adapter = GridAdapter(inputString)
         adapter.fillData(GridAdapter.gameComp)
         grid.adapter = adapter
+
+        val textView = view?.findViewById<TextView>(R.id.counter)
+        val moves = getString(R.string.counter) + counterMoves.toString()
+        textView?.text = moves
     }
 
     private fun moveUp(){
         try {
             GridAdapter.currentTile.moveUp(-1)
+            counterMoves++
             updateGame()
         } catch (e:java.lang.Exception){
 
@@ -79,6 +98,7 @@ class FragmentGame(var inputString: String) : Fragment() {
     private fun moveDown(){
         try {
             GridAdapter.currentTile.moveDown(1)
+            counterMoves++
             updateGame()
         } catch (e:java.lang.Exception){
 
@@ -88,6 +108,7 @@ class FragmentGame(var inputString: String) : Fragment() {
     private fun moveLeft(){
         try {
             GridAdapter.currentTile.moveLeft(-1)
+            counterMoves++
             updateGame()
         } catch (e:java.lang.Exception){
 
@@ -97,7 +118,15 @@ class FragmentGame(var inputString: String) : Fragment() {
     private fun moveRight(){
         try {
             GridAdapter.currentTile.moveRight(1)
+            counterMoves++
             updateGame()
+            if (GridAdapter.currentTile.checkWin()) {
+                Toast.makeText(context, getString(R.string.won), Toast.LENGTH_SHORT).show()
+                view?.findViewById<Button>(R.id.up_button)?.setOnClickListener {}
+                view?.findViewById<Button>(R.id.down_button)?.setOnClickListener {}
+                view?.findViewById<Button>(R.id.left_button)?.setOnClickListener {}
+                view?.findViewById<Button>(R.id.right_button)?.setOnClickListener {}
+            }
         } catch (e:java.lang.Exception){
 
         }
@@ -153,7 +182,6 @@ class GridAdapter(var inputString: String) : BaseAdapter() {
         val view = convertView ?: LayoutInflater.from(parent?.context).inflate(R.layout.list_layout, parent, false)
 
         view.setBackgroundResource(R.drawable.tiles_layout)
-        // TODO think about it
         view.setPadding(12,0,12,0)
 
         val button: Button = view.findViewById(R.id.tile) as Button
