@@ -19,10 +19,9 @@
             android:id="@+id/details_image"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:src="@drawable/poly_trees"
-            android:scaleType="centerCrop"
-            android:background="@drawable/diamond_shape"
-            android:clipToOutline="true" />
+            android:layout_margin="30dp"
+            android:src="@drawable/treestrees"
+            android:scaleType="centerCrop" />
 
         <!-- TITLE TextView for DetailsFragment -->
         <TextView

@@ -6,8 +6,7 @@
     android:layout_height="100dp"
     android:id="@+id/card_view_difficulty"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="@color/purple_200"
-    app:cardCornerRadius="12dp"
+    app:cardBackgroundColor="@color/light_green"
     app:cardElevation="3dp"
     app:contentPadding="4dp"
     android:foreground="?selectableItemBackground"
@@ -16,13 +15,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp" >
+        android:gravity="center">
 
         <TextView
             android:id="@+id/difficulty"
+            android:padding="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
