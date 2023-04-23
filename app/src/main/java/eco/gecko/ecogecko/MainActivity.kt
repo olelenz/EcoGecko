@@ -12,18 +12,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    companion object{
+        val levelList = ArrayList<Int>()
+        val boardList = ArrayList<String>()
+        lateinit var setOfDifficulties: Set<Int>
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val data = readData()
-        val levelList = ArrayList<Int>()
         data.forEach { levelList.add(it.first) }
-        val boardList = ArrayList<String>()
         data.forEach { boardList.add(it.second) }
-        val setOfDifficulties = levelList.toSet()
-        println(setOfDifficulties)
+        setOfDifficulties = levelList.toSet()
 
 
         /**
