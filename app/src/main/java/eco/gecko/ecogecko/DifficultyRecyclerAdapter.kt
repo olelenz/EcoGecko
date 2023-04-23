@@ -29,7 +29,7 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
     fun onclickLevel(level: Int){
         val fragmentManager = difficultyFragment.requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, FragmentLevelOverview())
+        transaction.replace(R.id.fragment_container, FragmentLevelOverview(level))
         transaction.addToBackStack(null)
         transaction.commit()
     }
