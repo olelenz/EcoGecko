@@ -29,7 +29,7 @@ class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverv
     private fun openGame(inputString: String) {
         val fragmentManager = fragmentLevelOverview.requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, FragmentGame(inputString))
+        transaction.replace(android.R.id.content, FragmentGame(inputString))
         transaction.addToBackStack(null)
         transaction.commit()
     }
