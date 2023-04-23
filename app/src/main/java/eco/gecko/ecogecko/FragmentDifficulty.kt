@@ -13,8 +13,8 @@ class FragmentDifficulty : Fragment() {
 
     companion object {
         private var recyclerView: RecyclerView? = null
-        //private var layoutManager: RecyclerView.LayoutManager? = null
         private var adapter: RecyclerView.Adapter<*>? = null
+        private const val column: Int = 4
     }
 
     override fun onCreateView(
@@ -23,9 +23,8 @@ class FragmentDifficulty : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_difficulty, container, false)
-        recyclerView = view.findViewById(R.id.recycler_view)
-        val layoutManager = GridLayoutManager(context, 4)
-        //layoutManager = LinearLayoutManager(view.context)
+        recyclerView = view.findViewById(R.id.recycler_view_difficulties)
+        val layoutManager = GridLayoutManager(context, column)
         recyclerView?.layoutManager = layoutManager
         adapter = DifficultyRecyclerAdapter(this)
         recyclerView?.adapter = adapter

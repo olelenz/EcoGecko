@@ -14,26 +14,12 @@ import androidx.fragment.app.Fragment
 class FragmentGame : Fragment() {
 
     private lateinit var grid: GridView
-    //private lateinit var displayMetrics: DisplayMetrics
-
-    companion object {
-        private var displayWidth: Int = 0
-        private var displayHeight: Int = 0
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
-
-        // getting screen sizes
-        /*
-        displayMetrics = DisplayMetrics()
-        (context as Activity).getWindowManager().defaultDisplay.getMetrics(displayMetrics)
-        displayWidth = displayMetrics.widthPixels
-        displayHeight = displayMetrics.heightPixels
-         */
 
         // initializing empty board
         grid = view.findViewById(R.id.gridView)

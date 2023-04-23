@@ -17,6 +17,12 @@
     <string name="track_button">Track</string>
     <string name="play_button">Play</string>
 
+    <!-- FragmentDifficulties -->
+    <string name="dif_text">Please select the difficulty</string>
+
+    <!-- FragmentLevelOverview -->
+    <string name="lev_text">Please select a level</string>
+
     <!-- TODO: check later what we need-->
 
     <string name="title_activity_main">MainActivity</string>

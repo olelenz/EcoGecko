@@ -35,7 +35,7 @@ class FragmentMenu : Fragment() {
     private fun moveToPlay() {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, FragmentMenu())
+        transaction.replace(R.id.fragment_container, FragmentDifficulty())
         transaction.addToBackStack(null)
         transaction.commit()
     }

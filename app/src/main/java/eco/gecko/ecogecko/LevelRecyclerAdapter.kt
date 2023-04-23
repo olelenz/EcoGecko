@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficulty) : RecyclerView.Adapter<DifficultyRecyclerAdapter.CardViewHolder?>() {
+class LevelRecyclerAdapter(private val fragmentLevelOverview: FragmentLevelOverview) : RecyclerView.Adapter<LevelRecyclerAdapter.CardViewHolder?>() {
 
-    private var level = MainActivity.setOfDifficulties.toList()
+    private var level = listOf("1", "2", "3", "4")
 
     inner class CardViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         var itemTitle: TextView? = null
@@ -21,15 +20,15 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
 
             // by pressing one card, go to DetailsFragment
             itemView?.setOnClickListener {
-                onclickLevel(this.itemTitle?.text.toString().toInt())
+                openGame()
             }
         }
     }
 
-    fun onclickLevel(level: Int){
-        val fragmentManager = difficultyFragment.requireActivity().supportFragmentManager
+    private fun openGame() {
+        val fragmentManager = fragmentLevelOverview.requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, FragmentLevelOverview())
+        transaction.replace(R.id.fragment_container, FragmentGame())
         transaction.addToBackStack(null)
         transaction.commit()
     }
@@ -38,7 +37,7 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
 
         return CardViewHolder(
             LayoutInflater.from(viewGroup.context)
-                .inflate(R.layout.recycler_difficulties, viewGroup, false)
+                .inflate(R.layout.recycler_level, viewGroup, false)
         )
     }
 
@@ -47,11 +46,6 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val layoutParams = holder.itemView.layoutParams as GridLayoutManager.LayoutParams
-        layoutParams.height = 200
-        layoutParams.width = 200
-        holder.itemView.layoutParams = layoutParams
-
-        holder.itemTitle?.text = level[position].toString()
+        holder.itemTitle?.text = level[position]
     }
 }

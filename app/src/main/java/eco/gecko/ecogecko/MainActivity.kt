@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         // ListFragment is our StartFragment
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.fragment_container, FragmentGame())
+        transaction.add(R.id.fragment_container, FragmentMenu())
         transaction.commit()
     }
 
