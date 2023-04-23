@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.GridView
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -46,7 +47,7 @@ class FragmentGame(var inputString: String) : Fragment() {
         returnButton.setOnClickListener { returnToMenu() }
 
         // Rewards Button
-        val rewardsButton = view.findViewById<Button>(R.id.rewards)
+        val rewardsButton = view.findViewById<ImageButton>(R.id.rewards)
         rewardsButton.setOnClickListener { rewardsCheck() }
 
         return view
@@ -54,8 +55,19 @@ class FragmentGame(var inputString: String) : Fragment() {
 
     private fun rewardsCheck() {
         sp2 = requireContext().getSharedPreferences("my_prefs2", Context.MODE_PRIVATE)
-        val msg = sp2?.getString("xp", "0")
-        val snackbar = view?.let { Snackbar.make(it, msg!!, Snackbar.LENGTH_LONG) }
+        var xp = sp2?.getString("xp", "0")!!.toLong()
+        val msg = "Your current points: " + sp2?.getString("xp", "0") + "\n" + "Do you want to spent 10?"
+        val snackbar = view?.let { Snackbar.make(it, msg, Snackbar.LENGTH_LONG) }
+
+        if (xp > 10) {
+            snackbar?.setAction("Yes") {
+                xp -= 10
+                val editor = sp2!!.edit()
+                editor.putString("xp", xp.toString())
+                editor.apply()
+                // TODO change id + 1 --> one lvl further
+            }
+        }
         snackbar?.show()
     }
 
