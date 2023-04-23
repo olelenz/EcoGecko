@@ -21,7 +21,7 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
 
             // by pressing one card, go to DetailsFragment
             itemView?.setOnClickListener {
-                onclickLevel(this.itemTitle?.text.toString().toInt())
+                onclickLevel(difficulty.get(this.itemTitle?.text.toString().toInt() - 1))
             }
         }
     }
@@ -52,6 +52,8 @@ class DifficultyRecyclerAdapter(private val difficultyFragment: FragmentDifficul
         layoutParams.width = 200
         holder.itemView.layoutParams = layoutParams
 
-        holder.itemTitle?.text = difficulty[position].toString()
+        var counter = position + 1
+
+        holder.itemTitle?.text = counter.toString()
     }
 }

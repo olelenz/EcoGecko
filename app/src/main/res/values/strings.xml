@@ -19,6 +19,7 @@
 
     <!-- FragmentDifficulties -->
     <string name="dif_text">Please select the difficulty</string>
+    <string name="dif_button">Menu</string>
 
     <!-- FragmentLevelOverview -->
     <string name="lev_text">Please select a level</string>
