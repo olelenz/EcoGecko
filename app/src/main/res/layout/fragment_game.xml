@@ -50,6 +50,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:numColumns="6"
+        android:src="@drawable/gridview_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/counter" />
